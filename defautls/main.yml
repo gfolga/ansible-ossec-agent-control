@@ -1,0 +1,7 @@
+wazuh_api_user: ""
+wazuh_api_passwd: ""
+wazuh_api_endpoint: ""
+
+restart: false
+syscheck: false
+cleardb: false

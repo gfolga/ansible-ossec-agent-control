@@ -1,0 +1,23 @@
+---
+# client already setup ??
+- name: check if client.keys already exists
+  stat: path=/var/ossec/etc/client.keys
+  register: key_file
+
+- name: get current agent id
+  command: "cut -f 1 -d \' \' /var/ossec/etc/client.keys"
+  when: key_file.stat.exists == True
+  register: current_agentid
+
+## agent id is valid??
+- name: get curr agent status
+  uri:
+    url="{{ wazuh_api_endpoint }}/agents/{{current_agentid.stdout}}"
+    method=GET
+    user="{{api.user}}"
+    password="{{wazuh_api_passwd}}"
+    status_code="200,500"
+  register: curragentstatus
+  when: key_file.stat.exists == True
+
+#- debug: var=curragentstatus

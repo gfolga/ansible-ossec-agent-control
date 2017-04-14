@@ -1,0 +1,23 @@
+---
+
+- name: delete syscheck db
+  uri:
+    url="{{ wazuh_api_endpoint }}/syscheck/{{current_agentid.stdout}}"
+    method=DELETE
+    user="{{wazuh_api_user}}"
+    password="{{wazuh_api_passwd}}"
+  register: syscheck_db_rm
+  when: cleardb
+
+#- debug: var=syscheck_db_rm
+
+- name: run syscheck
+  uri:
+    url="{{ wazuh_api_endpoint }}/syscheck/{{current_agentid.stdout}}"
+    method=PUT
+    user="{{wazuh_api_user}}"
+    password="{{wazuh_api_passwd}}"
+  register: syscheck_run
+  when: syscheck
+
+#- debug: var=syscheck_run

@@ -1,0 +1,8 @@
+---
+
+- name: restart agent
+  command: /var/ossec/bin/ossec-control restart
+  register: restart_2
+  when: key_file.stat.exists == False or restart
+
+#- debug: var=restart_2

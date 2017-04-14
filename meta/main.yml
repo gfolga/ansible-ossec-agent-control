@@ -1,0 +1,4 @@
+---
+galaxy_info:
+  author: gfolga
+  description: Ansible role to control OSSEC Agents via Wazuh RESTful API

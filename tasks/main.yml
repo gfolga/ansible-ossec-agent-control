@@ -1,0 +1,9 @@
+---
+
+- include: getid.yml
+
+- include: restart.yml
+  when: restart
+
+- include: syscheck.yml
+  when: syscheck
