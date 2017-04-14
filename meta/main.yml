@@ -2,3 +2,5 @@
 galaxy_info:
   author: gfolga
   description: Ansible role to control OSSEC Agents via Wazuh RESTful API
+  license: GPLv2
+  min_ansible_version: 1.9
